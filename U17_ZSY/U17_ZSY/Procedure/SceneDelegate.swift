@@ -4,7 +4,13 @@
 //
 //  Created by LEPU on 2020/8/10.
 //  Copyright © 2020 LEPU. All rights reserved.
-//
+/*
+ 
+ 🔥
+    因为删除了Main.storyboard,所以这个文件其实已经没有作用了,这里的代理方法,通过原来的AppDelegate补回来;
+ 🔥
+ 
+ */
 
 import UIKit
 
@@ -17,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.windowScene = windowScene
+        window?.windowScene = windowScene // 这个属性必须要,不然不显示
         window?.backgroundColor = UIColor.white
         window?.rootViewController = UHomeViewController()
         window?.makeKeyAndVisible()
