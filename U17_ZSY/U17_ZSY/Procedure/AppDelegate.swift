@@ -51,42 +51,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     func applicationDidEnterBackground(_ application: UIApplication) {
-                   //当程序被推送到后台的时候调用。所以要设置后台继续运行，则在这个函数里面设置即可
-                   //用这个方法来释放共享的资源 ， 保存用户数据 ，停用计时器。
+        //当程序被推送到后台的时候调用。所以要设置后台继续运行，则在这个函数里面设置即可
+        //用这个方法来释放共享的资源 ， 保存用户数据 ，停用计时器。
         print("applicationDidEnterBackground 被执行了")
     }
     
-    
-
-    
     func applicationWillEnterForeground(_ application: UIApplication) {
-    
-           //当程序从后台将要重新回到前台时候调用，你取消进入后台的时候调用的程序
-           print("applicationWillEnterForeground 被执行了")
-       }
+        
+        //当程序从后台将要重新回到前台时候调用，你取消进入后台的时候调用的程序
+        print("applicationWillEnterForeground 被执行了")
+    }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-           //应用程序进入活动状态。这时候需要重新启用应用程序
-           print("applicationDidBecomeActive 被执行了")
-       }
+        //应用程序进入活动状态。这时候需要重新启用应用程序
+        print("applicationDidBecomeActive 被执行了")
+    }
     
     func applicationWillTerminate(_ application: UIApplication) {
-           //应用程序将要被终结的时候执行  可以适当保存数据之类的
-           print("applicationWillTerminate 被执行了")
-       }
+        //应用程序将要被终结的时候执行  可以适当保存数据之类的
+        print("applicationWillTerminate 被执行了")
+    }
     
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-           //如果为应用程序分配了太多内存操作系统会终止应用程序的运行，在终止前会执行这个方法，通常可以在这里进行内存清理工作防止程序被终止
-           print("applicationDidReceiveMemoryWarning 被执行了")
-       }
+        //如果为应用程序分配了太多内存操作系统会终止应用程序的运行，在终止前会执行这个方法，通常可以在这里进行内存清理工作防止程序被终止
+        print("applicationDidReceiveMemoryWarning 被执行了")
+    }
     
     func applicationSignificantTimeChange(_ application: UIApplication) {
-           //当系统时间发生改变时执行
-       }
+        //当系统时间发生改变时执行
+    }
     
     func application(_ application: UIApplication, willChangeStatusBarFrame newStatusBarFrame: CGRect) {
-           //当StatusBar框将要变化时执行
-       }
+        //当StatusBar框将要变化时执行
+    }
     
     
 
