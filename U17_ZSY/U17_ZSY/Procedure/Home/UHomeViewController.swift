@@ -52,6 +52,14 @@ class UHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        
+        //导航栏遮挡问题修正
+        if #available(iOS 11.0, *){
+            UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+        }else{
+            automaticallyAdjustsScrollViewInsets = false
+        }
+        
         setupUI()
         setNav()
     }
