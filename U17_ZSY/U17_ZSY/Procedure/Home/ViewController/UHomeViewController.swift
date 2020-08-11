@@ -7,11 +7,10 @@
 //
 
 import UIKit
+
 import HMSegmentedControl  //第三方segment控件
-import SnapKit             //布局
-import Then                //初始化
 import Reusable            //Cell的注册和重用
-import Kingfisher          //图片加载
+
 
 class UHomeViewController: UIViewController {
     //MARK: - 懒加载
