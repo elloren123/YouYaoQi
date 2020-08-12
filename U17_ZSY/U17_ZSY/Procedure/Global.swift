@@ -18,6 +18,27 @@ import UIKit
 let screenWidth = UIScreen.main.bounds.width
 let screenHeigth = UIScreen.main.bounds.height
 
+//获取当前APP是否加载了VC,有则获取当前的这个顶层VC
+var topVC: UIViewController? {
+    var resultVC: UIViewController?
+    resultVC = _topVC(UIApplication.shared.keyWindow?.rootViewController)
+    while resultVC?.presentedViewController != nil {
+        resultVC = _topVC(resultVC?.presentedViewController)
+    }
+    return resultVC
+}
+private  func _topVC(_ vc: UIViewController?) -> UIViewController? {
+    if vc is UINavigationController {
+        //UINavigationController的栈顶VC
+        return _topVC((vc as? UINavigationController)?.topViewController)
+    } else if vc is UITabBarController {
+        return _topVC((vc as? UITabBarController)?.selectedViewController)
+    } else {
+        return vc
+    }
+}
+
+
 
 //MARK: - 一些扩展方法
 
@@ -55,3 +76,16 @@ extension UIColor {
         return UIColor(R: 29, G: 221, B: 43)
     }
 }
+
+//MARK: UserDefaults存储数据的Key值
+extension String {
+    static let searchHistoryKey = "searchHistoryKey" //搜索历史
+    static let sexTypeKey = "sexTypeKey"             //选择的性别
+}
+
+
+//MARK: 通知Name
+extension NSNotification.Name {
+    static let USexTypeDidChange = NSNotification.Name("USexTypeDidChange")
+}
+

@@ -34,6 +34,8 @@
 		BD6990E724E287710085E757 /* UComicCellHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990E624E287710085E757 /* UComicCellHead.swift */; };
 		BD6990E924E28E0C0085E757 /* UComicCellFoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990E824E28E0C0085E757 /* UComicCellFoot.swift */; };
 		BD69912F24E382240085E757 /* UBoutiqueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69912E24E382240085E757 /* UBoutiqueListViewController.swift */; };
+		BD69913124E38D3F0085E757 /* UAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69913024E38D3F0085E757 /* UAPI.swift */; };
+		BD69913324E3C4650085E757 /* UBoardCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69913224E3C4640085E757 /* UBoardCCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		BD6990E624E287710085E757 /* UComicCellHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UComicCellHead.swift; sourceTree = "<group>"; };
 		BD6990E824E28E0C0085E757 /* UComicCellFoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UComicCellFoot.swift; sourceTree = "<group>"; };
 		BD69912E24E382240085E757 /* UBoutiqueListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBoutiqueListViewController.swift; sourceTree = "<group>"; };
+		BD69913024E38D3F0085E757 /* UAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAPI.swift; sourceTree = "<group>"; };
+		BD69913224E3C4640085E757 /* UBoardCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBoardCCell.swift; sourceTree = "<group>"; };
 		C31E0630C528B261D1CCE387 /* Pods_U17_ZSY.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_U17_ZSY.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -201,6 +205,7 @@
 		BD56C6FC24E0DCAD002F04CA /* API */ = {
 			isa = PBXGroup;
 			children = (
+				BD69913024E38D3F0085E757 /* UAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				BD6990DE24E26AEA0085E757 /* UComicCell.swift */,
+				BD69913224E3C4640085E757 /* UBoardCCell.swift */,
 				BD6990E624E287710085E757 /* UComicCellHead.swift */,
 				BD6990E824E28E0C0085E757 /* UComicCellFoot.swift */,
 			);
@@ -528,6 +534,8 @@
 				BD6990E524E286C30085E757 /* UBaseCollectionReusableView.swift in Sources */,
 				BD56C70C24E0DCAD002F04CA /* SceneDelegate.swift in Sources */,
 				BD6990D924E268F10085E757 /* USubscibeListViewController.swift in Sources */,
+				BD69913124E38D3F0085E757 /* UAPI.swift in Sources */,
+				BD69913324E3C4650085E757 /* UBoardCCell.swift in Sources */,
 				BD6990DB24E268F10085E757 /* UHomeViewController.swift in Sources */,
 				BD56C71624E0FD8A002F04CA /* UMainViewController.swift in Sources */,
 				BD56C72824E1374E002F04CA /* UNavigationController.swift in Sources */,

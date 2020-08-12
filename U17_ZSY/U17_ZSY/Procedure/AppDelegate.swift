@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        
+        configBase()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         window?.rootViewController = UTabBarController()
@@ -23,24 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
-//    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-//        // Called when a new scene session is being created.
-//        // Use this method to select a configuration to create the new scene with.
-//        print("返回一个创建场景时需要的UISceneConfiguration对象")
-//        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-//    }
-//
-//    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-//        // Called when the user discards a scene session.
-//        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-//        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-//        print("当用户通过“应用切换器”关闭一个或多个场景时会被调用")
-//    }
-//
-//
+    func configBase() {
+        //MARK: 性别缓存
+        let defaults = UserDefaults.standard
+        if defaults.value(forKey: String.sexTypeKey) == nil{
+            defaults.set(1, forKey: String.sexTypeKey) //设置默认值 1:男 2:女
+            defaults.synchronize()
+        }
+        
+    }
+    
+    
     
     //把Main.storyboard删除后,没有了对于的代理回调方法,需要把原来的AppDelegate补回来
     

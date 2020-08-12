@@ -19,15 +19,20 @@ let kHeaderH : CGFloat = 50
 let UComicCellID : String = "UComicCell"
 
 class UBoutiqueListViewController: UIViewController {
+    //MARK: - 属性
+    private var sexType : Int  = UserDefaults.standard.integer(forKey: String.sexTypeKey)
+    
+    private var galleryItems = [GalleryItemModel]() //这个是轮播的数据模型
+    
+    private var TextItems = [TextItemModel]()
+    
+    private var comicLists = [ComicListModel]()
+    
     //MARK: - 懒加载
     lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: kItemW, height: kNormalItemH)
-        layout.minimumLineSpacing = 0 //网格中各行项目之间使用的最小间距
-        layout.minimumInteritemSpacing = kItemMargin //同一行中各项之间使用的最小间距
-        layout.sectionInset = UIEdgeInsets(top: 0, left: kItemMargin, bottom: 0, right: kItemMargin)
-        layout.headerReferenceSize = CGSize(width: screenWidth, height: kHeaderH)
-        layout.footerReferenceSize = CGSize(width: screenWidth, height: 10)
+        layout.minimumLineSpacing = 10 //网格中各行项目之间使用的最小间距
+        layout.minimumInteritemSpacing = 5 //同一行中各项之间使用的最小间距
         
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor.white
@@ -39,7 +44,7 @@ class UBoutiqueListViewController: UIViewController {
         //collectionView.register(UComicCell.self, forCellWithReuseIdentifier: UComicCellID)
         //第三方注册方式
         collectionView.register(cellType: UComicCell.self)
-        
+        collectionView.register(cellType: UBoardCCell.self)
         collectionView.register(supplementaryViewType: UComicCellHead.self, ofKind: UICollectionView.elementKindSectionHeader)
         collectionView.register(supplementaryViewType: UComicCellFoot.self, ofKind: UICollectionView.elementKindSectionFooter)
         
@@ -60,14 +65,25 @@ class UBoutiqueListViewController: UIViewController {
         return bw
     }()
     
+    //男生女生Btn
+    private lazy var sexTypeButton = UIButton().then {
+        $0.addTarget(self, action: #selector(changeSex), for: .touchUpInside)
+    }
+    
     //MARK: - 系统构造函数
     override func viewDidLoad() {
         super.viewDidLoad()
         print("推荐")
         view.backgroundColor = UIColor.white
         setupUI()
-        
+        loadData(false)
     }
+    
+    //男生女生Btn Action
+    @objc private func changeSex() {
+        loadData(true)
+    }
+    
 }
 
 //MARK: - 设置UI
@@ -85,36 +101,90 @@ extension UBoutiqueListViewController {
             $0.height.equalTo(collectionView.contentInset.top)
         }
         
+        view.addSubview(sexTypeButton)
+        sexTypeButton.snp.makeConstraints {
+            $0.right.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-20)
+            $0.width.height.equalTo(60)
+        }
+        
+        
+    }
+}
+
+//MARK: - 数据源请求
+extension UBoutiqueListViewController {
+    func loadData(_ changeSex:Bool){
+        if changeSex {
+            sexType = 3 - sexType
+            UserDefaults.standard.set(sexType, forKey: String.sexTypeKey)
+            UserDefaults.standard.synchronize()
+            //发送通知
+            NotificationCenter.default.post(name: .USexTypeDidChange, object: nil)
+        }
+        
+        sexTypeButton.setImage(UIImage(named: sexType == 1 ? "gender_male" : "gender_female"),
+        for: .normal)
+        
+        ApiLoadingProvider.request(UApi.boutiqueList(sexType: sexType), model: BoutiqueListModel.self) {[weak self] (returnData) in
+            //这里返回的returnData为BoutiqueListModel类型
+            self?.galleryItems = returnData?.galleryItems ?? []
+            self?.TextItems = returnData?.textItems ?? []
+            self?.comicLists = returnData?.comicLists ?? []
+            
+            self?.collectionView.reloadData() //刷新
+            
+            //遍历galleryItems 数组,去除cover= nil的数据,遍历返回一个只有cover的数组
+            self?.bannerView.imagePaths = self?.galleryItems.filter{ $0.cover != nil }.map{ $0.cover! } ?? []
+            
+        }
         
     }
     
 }
 
 
+
 //MARK: - collectionView代理
 extension UBoutiqueListViewController : UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 5
+        return comicLists.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        let comicList = comicLists[section]
+        /*
+         取数组中的前4个,如果不足4个,则获得整个数组,如果大于4个,则取前四
+         */
+        
+        return comicList.comics?.prefix(4).count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UComicCell.self)
-//        cell.backgroundColor = UIColor.white
-        cell.style = .withTitleAndDesc
-        
-        return cell
+        let comicList = comicLists[indexPath.section]
+        if comicList.comicType == .billboard {
+            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UBoardCCell.self)
+            cell.model = comicList.comics?[indexPath.row]
+            return cell
+        }else {
+            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UComicCell.self)
+            if comicList.comicType == .thematic {
+                cell.style = .none
+            } else {
+                cell.style = .withTitleAndDesc
+            }
+            cell.model = comicList.comics?[indexPath.row]
+            return cell
+        }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        return CGSize(width: screenWidth, height: 44)
+        let comicList = comicLists[section]
+        return comicList.itemTitle?.count ?? 0 > 0 ? CGSize(width: screenWidth, height: 44) : CGSize.zero
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: screenWidth, height: 10)
+        return comicLists.count - 1 != section ? CGSize(width: screenWidth, height: 10) : CGSize.zero
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -130,24 +200,52 @@ extension UBoutiqueListViewController : UICollectionViewDataSource ,UICollection
             return foot
         }
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let comicList = comicLists[indexPath.section]
+        if comicList.comicType == .billboard {
+            let width = floor((screenWidth - 15.0) / 4.0) //可以小,但是不能大,所以向下取值
+            return CGSize(width: width, height: 80)
+        }else {
+            if comicList.comicType == .thematic {
+                //两个cell一排的
+                let width = floor((screenWidth - 5.0) / 2.0)
+                return CGSize(width: width, height: 120)
+            } else {
+                /*
+                 这个是一般的cell的大小
+                 如果是1个数据--> width = 1/3
+                 如果是2个数据--> width = 1/2
+                 如果是3个数据--> width = 1/3
+                 如果是4个及以上数据--> width = 1/2
+                 */
+                let count = comicList.comics?.prefix(4).count ?? 0
+                let warp = count % 2 + 2
+                let width = floor((screenWidth - CGFloat(warp - 1) * 5.0) / CGFloat(warp))
+                return CGSize(width: width, height: CGFloat(warp * 80))
+            }
+        }
+    }
+    
 }
 
 //MARK: - UIScrollViewDelegate
 extension UBoutiqueListViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-     print(scrollView.contentOffset.y)//一开始的原点,就是一个负值 -175
+        //一开始的原点,就是一个负值 -175
         if scrollView == collectionView {
             //让banner和collectionview同时滑动
+            //对应布局而言,左上角是 0 ,但是对应滑动时的坐标点,一开始是 -175
             bannerView.snp.updateConstraints{ $0.top.equalToSuperview().offset(min(0, -(scrollView.contentOffset.y + scrollView.contentInset.top))) }
         }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-       
+        
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-       
+        
     }
 }
 
@@ -168,6 +266,8 @@ extension UBoutiqueListViewController {
 //            navigationController?.pushViewController(vc, animated: true)
 //        }
     }
+    
+   
     
 }
 
