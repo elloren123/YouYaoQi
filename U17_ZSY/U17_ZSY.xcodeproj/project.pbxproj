@@ -26,11 +26,14 @@
 		BD6990D924E268F10085E757 /* USubscibeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990D324E268F10085E757 /* USubscibeListViewController.swift */; };
 		BD6990DA24E268F10085E757 /* UVIPListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990D424E268F10085E757 /* UVIPListViewController.swift */; };
 		BD6990DB24E268F10085E757 /* UHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990D524E268F10085E757 /* UHomeViewController.swift */; };
-		BD6990DC24E268F10085E757 /* UBoutiqueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990D624E268F10085E757 /* UBoutiqueListViewController.swift */; };
 		BD6990DD24E268F10085E757 /* URankListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990D724E268F10085E757 /* URankListViewController.swift */; };
 		BD6990DF24E26AEA0085E757 /* UComicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990DE24E26AEA0085E757 /* UComicCell.swift */; };
 		BD6990E124E273330085E757 /* UBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990E024E273330085E757 /* UBaseCollectionViewCell.swift */; };
 		BD6990E324E279B10085E757 /* UModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990E224E279B10085E757 /* UModel.swift */; };
+		BD6990E524E286C30085E757 /* UBaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990E424E286C30085E757 /* UBaseCollectionReusableView.swift */; };
+		BD6990E724E287710085E757 /* UComicCellHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990E624E287710085E757 /* UComicCellHead.swift */; };
+		BD6990E924E28E0C0085E757 /* UComicCellFoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6990E824E28E0C0085E757 /* UComicCellFoot.swift */; };
+		BD69912F24E382240085E757 /* UBoutiqueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69912E24E382240085E757 /* UBoutiqueListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +56,7 @@
 /* Begin PBXFileReference section */
 		02677716E08AF0D2C777FCD1 /* Pods-U17_ZSY.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-U17_ZSY.release.xcconfig"; path = "Target Support Files/Pods-U17_ZSY/Pods-U17_ZSY.release.xcconfig"; sourceTree = "<group>"; };
 		12CB046D27A11011BED1B624 /* Pods-U17_ZSY.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-U17_ZSY.debug.xcconfig"; path = "Target Support Files/Pods-U17_ZSY/Pods-U17_ZSY.debug.xcconfig"; sourceTree = "<group>"; };
-		BD56C6BC24E0D925002F04CA /* U17_ZSY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = U17_ZSY.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD56C6BC24E0D925002F04CA /* 有脚气.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "有脚气.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD56C6C824E0D925002F04CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD56C6CB24E0D925002F04CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD56C6CD24E0D925002F04CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,11 +80,14 @@
 		BD6990D324E268F10085E757 /* USubscibeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USubscibeListViewController.swift; sourceTree = "<group>"; };
 		BD6990D424E268F10085E757 /* UVIPListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UVIPListViewController.swift; sourceTree = "<group>"; };
 		BD6990D524E268F10085E757 /* UHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHomeViewController.swift; sourceTree = "<group>"; };
-		BD6990D624E268F10085E757 /* UBoutiqueListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBoutiqueListViewController.swift; sourceTree = "<group>"; };
 		BD6990D724E268F10085E757 /* URankListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URankListViewController.swift; sourceTree = "<group>"; };
 		BD6990DE24E26AEA0085E757 /* UComicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UComicCell.swift; sourceTree = "<group>"; };
 		BD6990E024E273330085E757 /* UBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		BD6990E224E279B10085E757 /* UModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UModel.swift; sourceTree = "<group>"; };
+		BD6990E424E286C30085E757 /* UBaseCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBaseCollectionReusableView.swift; sourceTree = "<group>"; };
+		BD6990E624E287710085E757 /* UComicCellHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UComicCellHead.swift; sourceTree = "<group>"; };
+		BD6990E824E28E0C0085E757 /* UComicCellFoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UComicCellFoot.swift; sourceTree = "<group>"; };
+		BD69912E24E382240085E757 /* UBoutiqueListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBoutiqueListViewController.swift; sourceTree = "<group>"; };
 		C31E0630C528B261D1CCE387 /* Pods_U17_ZSY.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_U17_ZSY.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,7 +149,7 @@
 		BD56C6BD24E0D925002F04CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BD56C6BC24E0D925002F04CA /* U17_ZSY.app */,
+				BD56C6BC24E0D925002F04CA /* 有脚气.app */,
 				BD56C6D224E0D926002F04CA /* U17_ZSYTests.xctest */,
 				BD56C6DD24E0D926002F04CA /* U17_ZSYUITests.xctest */,
 			);
@@ -291,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				BD6990E024E273330085E757 /* UBaseCollectionViewCell.swift */,
+				BD6990E424E286C30085E757 /* UBaseCollectionReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -309,7 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				BD6990D524E268F10085E757 /* UHomeViewController.swift */,
-				BD6990D624E268F10085E757 /* UBoutiqueListViewController.swift */,
+				BD69912E24E382240085E757 /* UBoutiqueListViewController.swift */,
 				BD6990D424E268F10085E757 /* UVIPListViewController.swift */,
 				BD6990D324E268F10085E757 /* USubscibeListViewController.swift */,
 				BD6990D724E268F10085E757 /* URankListViewController.swift */,
@@ -321,6 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				BD6990DE24E26AEA0085E757 /* UComicCell.swift */,
+				BD6990E624E287710085E757 /* UComicCellHead.swift */,
+				BD6990E824E28E0C0085E757 /* UComicCellFoot.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -344,7 +353,7 @@
 			);
 			name = U17_ZSY;
 			productName = U17_ZSY;
-			productReference = BD56C6BC24E0D925002F04CA /* U17_ZSY.app */;
+			productReference = BD56C6BC24E0D925002F04CA /* 有脚气.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BD56C6D124E0D926002F04CA /* U17_ZSYTests */ = {
@@ -502,18 +511,21 @@
 			files = (
 				BD56C70B24E0DCAD002F04CA /* AppDelegate.swift in Sources */,
 				BD6990DD24E268F10085E757 /* URankListViewController.swift in Sources */,
+				BD69912F24E382240085E757 /* UBoutiqueListViewController.swift in Sources */,
 				BD56C71424E0FD73002F04CA /* UBookViewController.swift in Sources */,
 				BD56C71224E0FD62002F04CA /* UCateListViewController.swift in Sources */,
+				BD6990E724E287710085E757 /* UComicCellHead.swift in Sources */,
 				BD56C71E24E116BB002F04CA /* UIColorExtension.swift in Sources */,
 				BD56C72C24E14F1B002F04CA /* UIBarButtonItemExtension.swift in Sources */,
 				BD6990E324E279B10085E757 /* UModel.swift in Sources */,
-				BD6990DC24E268F10085E757 /* UBoutiqueListViewController.swift in Sources */,
 				BD6990E124E273330085E757 /* UBaseCollectionViewCell.swift in Sources */,
 				BD6990DF24E26AEA0085E757 /* UComicCell.swift in Sources */,
+				BD6990E924E28E0C0085E757 /* UComicCellFoot.swift in Sources */,
 				BD56C72A24E148D9002F04CA /* TestVC.swift in Sources */,
 				BD6990DA24E268F10085E757 /* UVIPListViewController.swift in Sources */,
 				BD6990D124E263400085E757 /* Global.swift in Sources */,
 				BD56C71A24E10DFE002F04CA /* UTabBarController.swift in Sources */,
+				BD6990E524E286C30085E757 /* UBaseCollectionReusableView.swift in Sources */,
 				BD56C70C24E0DCAD002F04CA /* SceneDelegate.swift in Sources */,
 				BD6990D924E268F10085E757 /* USubscibeListViewController.swift in Sources */,
 				BD6990DB24E268F10085E757 /* UHomeViewController.swift in Sources */,
@@ -694,7 +706,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lepu.test.U17-ZSY";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "有脚气";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -715,7 +727,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lepu.test.U17-ZSY";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "有脚气";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

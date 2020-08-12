@@ -21,6 +21,7 @@ let screenHeigth = UIScreen.main.bounds.height
 
 //MARK: - 一些扩展方法
 
+//MARK: 图片加载
 extension Kingfisher where Base: ImageView {
     @discardableResult
     public func setImage(urlString: String?,
@@ -43,3 +44,14 @@ extension Kingfisher where Base: Button {
     }
 }
 
+//MARK: 颜色
+extension UIColor {
+    //默认的背景色
+    class var background: UIColor {
+        return UIColor(R: 242, G: 242, B: 242)
+    }
+    //默认的主题颜色
+    class var theme: UIColor {
+        return UIColor(R: 29, G: 221, B: 43)
+    }
+}
