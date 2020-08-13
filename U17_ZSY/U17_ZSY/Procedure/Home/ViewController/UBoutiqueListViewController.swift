@@ -35,7 +35,7 @@ class UBoutiqueListViewController: UIViewController {
         layout.minimumInteritemSpacing = 5 //同一行中各项之间使用的最小间距
         
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor.background
         collectionView.dataSource = self
         collectionView.delegate = self //之前忘记了这个代理,导致UIScrollViewDelegate不走🤣🤣🤣
 //        collectionView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
@@ -47,6 +47,11 @@ class UBoutiqueListViewController: UIViewController {
         collectionView.register(cellType: UBoardCCell.self)
         collectionView.register(supplementaryViewType: UComicCellHead.self, ofKind: UICollectionView.elementKindSectionHeader)
         collectionView.register(supplementaryViewType: UComicCellFoot.self, ofKind: UICollectionView.elementKindSectionFooter)
+        
+        //添加刷新功能
+        collectionView.uHead = URefreshHeader { [weak self] in self?.loadData(false) }
+        collectionView.uFoot = URefreshDiscoverFooter()
+       
         
         return collectionView
     }()
@@ -76,7 +81,7 @@ class UBoutiqueListViewController: UIViewController {
         print("推荐")
         view.backgroundColor = UIColor.white
         setupUI()
-        loadData(false)
+//        loadData(false)
     }
     
     //男生女生Btn Action
@@ -94,6 +99,10 @@ extension UBoutiqueListViewController {
             $0.edges.equalToSuperview()
         }
         collectionView.contentInset = UIEdgeInsets(top: screenWidth * 0.467, left: 0, bottom: 0, right: 0)
+        
+        //添加无数据View
+        collectionView.uempty = UEmptyView(verticalOffset: -(collectionView.contentInset.top)) { self.loadData(false) }
+        collectionView.uempty!.allowShow = true
         
         view.addSubview(bannerView)
         bannerView.snp.makeConstraints{
@@ -119,7 +128,7 @@ extension UBoutiqueListViewController {
             sexType = 3 - sexType
             UserDefaults.standard.set(sexType, forKey: String.sexTypeKey)
             UserDefaults.standard.synchronize()
-            //发送通知
+            //发送通知 -- >主要是为了修改性别后,更改我的界面中 背景图;
             NotificationCenter.default.post(name: .USexTypeDidChange, object: nil)
         }
         
@@ -131,6 +140,8 @@ extension UBoutiqueListViewController {
             self?.galleryItems = returnData?.galleryItems ?? []
             self?.TextItems = returnData?.textItems ?? []
             self?.comicLists = returnData?.comicLists ?? []
+            
+            self?.collectionView.uHead.endRefreshing()
             
             self?.collectionView.reloadData() //刷新
             
@@ -241,10 +252,24 @@ extension UBoutiqueListViewController {
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
+        //滑动过程中,隐藏sexTypeButton
+        if scrollView == collectionView {
+            UIView.animate(withDuration: 0.5) {
+                //缩放或旋转视图的框架矩形,用于做旋转、缩放、平移,transform属性不会影响自动布局
+                self.sexTypeButton.transform = CGAffineTransform(translationX: 50, y: 0)
+            }
+        }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        //停止时显示sexTypeButton
+        if scrollView == collectionView {
+            UIView.animate(withDuration: 0.5) {
+                self.sexTypeButton.transform = CGAffineTransform(translationX:0, y: 0)
+                //或者,写法有很多,具体看API
+                //self.sexTypeButton.transform = CGAffineTransform.identity //反转,就是回到上一次的状态中
+            }
+        }
         
     }
 }
@@ -254,20 +279,22 @@ extension UBoutiqueListViewController {
 extension UBoutiqueListViewController {
     //轮播图事件
     private func didSelectBanner(index: NSInteger) {
-//        let item = galleryItems[index]
-//        if item.linkType == 2 {
-//            guard let url = item.ext?.compactMap({ return $0.key == "url" ? $0.val : nil }).joined() else { return }
-//            let vc = UWebViewController(url: url)
-//            navigationController?.pushViewController(vc, animated: true)
-//        } else {
-//            guard let comicIdString = item.ext?.compactMap({ return $0.key == "comicId" ? $0.val : nil }).joined(),
-//                let comicId = Int(comicIdString) else { return }
-//            let vc = UComicViewController(comicid: comicId)
-//            navigationController?.pushViewController(vc, animated: true)
-//        }
+        let vc = UWebViewController(url: "https://www.baidu.com")
+        navigationController?.pushViewController(vc, animated: true)
+        return
+        let item = galleryItems[index]
+        if item.linkType == 2 {
+            //取出url的各个部分进行拼接,返回一个完整的url;
+            guard let url = item.ext?.compactMap({ return $0.key == "url" ? $0.val : nil }).joined() else { return }
+            let vc = UWebViewController(url: url)
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            guard let comicIdString = item.ext?.compactMap({ return $0.key == "comicId" ? $0.val : nil }).joined(),
+                let comicId = Int(comicIdString) else { return }
+            //            let vc = UComicViewController(comicid: comicId)
+            //            navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    
-   
     
 }
 

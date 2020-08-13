@@ -36,6 +36,10 @@
 		BD69912F24E382240085E757 /* UBoutiqueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69912E24E382240085E757 /* UBoutiqueListViewController.swift */; };
 		BD69913124E38D3F0085E757 /* UAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69913024E38D3F0085E757 /* UAPI.swift */; };
 		BD69913324E3C4650085E757 /* UBoardCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69913224E3C4640085E757 /* UBoardCCell.swift */; };
+		BD69913524E3D9960085E757 /* UWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69913424E3D9960085E757 /* UWebViewController.swift */; };
+		BD69913724E3DF860085E757 /* UBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69913624E3DF860085E757 /* UBaseViewController.swift */; };
+		BD69913A24E4D2F10085E757 /* URefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69913924E4D2F10085E757 /* URefresh.swift */; };
+		BD69913D24E4D8030085E757 /* UEmptyDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69913C24E4D8030085E757 /* UEmptyDataSet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +96,10 @@
 		BD69912E24E382240085E757 /* UBoutiqueListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBoutiqueListViewController.swift; sourceTree = "<group>"; };
 		BD69913024E38D3F0085E757 /* UAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAPI.swift; sourceTree = "<group>"; };
 		BD69913224E3C4640085E757 /* UBoardCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBoardCCell.swift; sourceTree = "<group>"; };
+		BD69913424E3D9960085E757 /* UWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWebViewController.swift; sourceTree = "<group>"; };
+		BD69913624E3DF860085E757 /* UBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBaseViewController.swift; sourceTree = "<group>"; };
+		BD69913924E4D2F10085E757 /* URefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URefresh.swift; sourceTree = "<group>"; };
+		BD69913C24E4D8030085E757 /* UEmptyDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UEmptyDataSet.swift; sourceTree = "<group>"; };
 		C31E0630C528B261D1CCE387 /* Pods_U17_ZSY.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_U17_ZSY.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -213,6 +221,8 @@
 		BD56C6FD24E0DCAD002F04CA /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				BD69913B24E4D7FA0085E757 /* EmptyView */,
+				BD69913824E4D2E00085E757 /* Refresh */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -312,6 +322,8 @@
 			children = (
 				BD56C71924E10DFE002F04CA /* UTabBarController.swift */,
 				BD56C72724E1374E002F04CA /* UNavigationController.swift */,
+				BD69913624E3DF860085E757 /* UBaseViewController.swift */,
+				BD69913424E3D9960085E757 /* UWebViewController.swift */,
 				BD56C72924E148D9002F04CA /* TestVC.swift */,
 			);
 			path = ViewController;
@@ -338,6 +350,22 @@
 				BD6990E824E28E0C0085E757 /* UComicCellFoot.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BD69913824E4D2E00085E757 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				BD69913924E4D2F10085E757 /* URefresh.swift */,
+			);
+			path = Refresh;
+			sourceTree = "<group>";
+		};
+		BD69913B24E4D7FA0085E757 /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				BD69913C24E4D8030085E757 /* UEmptyDataSet.swift */,
+			);
+			path = EmptyView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,16 +546,20 @@
 				BD56C70B24E0DCAD002F04CA /* AppDelegate.swift in Sources */,
 				BD6990DD24E268F10085E757 /* URankListViewController.swift in Sources */,
 				BD69912F24E382240085E757 /* UBoutiqueListViewController.swift in Sources */,
+				BD69913A24E4D2F10085E757 /* URefresh.swift in Sources */,
 				BD56C71424E0FD73002F04CA /* UBookViewController.swift in Sources */,
 				BD56C71224E0FD62002F04CA /* UCateListViewController.swift in Sources */,
 				BD6990E724E287710085E757 /* UComicCellHead.swift in Sources */,
 				BD56C71E24E116BB002F04CA /* UIColorExtension.swift in Sources */,
 				BD56C72C24E14F1B002F04CA /* UIBarButtonItemExtension.swift in Sources */,
 				BD6990E324E279B10085E757 /* UModel.swift in Sources */,
+				BD69913524E3D9960085E757 /* UWebViewController.swift in Sources */,
 				BD6990E124E273330085E757 /* UBaseCollectionViewCell.swift in Sources */,
+				BD69913724E3DF860085E757 /* UBaseViewController.swift in Sources */,
 				BD6990DF24E26AEA0085E757 /* UComicCell.swift in Sources */,
 				BD6990E924E28E0C0085E757 /* UComicCellFoot.swift in Sources */,
 				BD56C72A24E148D9002F04CA /* TestVC.swift in Sources */,
+				BD69913D24E4D8030085E757 /* UEmptyDataSet.swift in Sources */,
 				BD6990DA24E268F10085E757 /* UVIPListViewController.swift in Sources */,
 				BD6990D124E263400085E757 /* Global.swift in Sources */,
 				BD56C71A24E10DFE002F04CA /* UTabBarController.swift in Sources */,

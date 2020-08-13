@@ -117,7 +117,7 @@ struct ComicListModel: HandyJSON {
 //轮播
 struct GalleryItemModel: HandyJSON {
     var id: Int = 0
-    var linkType: Int = 0
+    var linkType: Int = 0  // =2时,为web界面,其他为原生界面
     var cover: String?
     var ext: [ExtModel]?
     var title: String?
